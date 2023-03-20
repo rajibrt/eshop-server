@@ -1,0 +1,86 @@
+[
+    {
+        "_id": 1,
+        "brand": "iPhone",
+        "model": "iPhone 14 Pro Max",
+        "thumb_img": "https://i.ibb.co/zPGJYXf/i-Phone-14-Pro-Max-9907.jpg",
+        "price": 142000
+    },
+    {
+        "_id": 2,
+        "brand": "SAMSUNG",
+        "model": "Galaxy S22 Ultra",
+        "thumb_img": "https://adminapi.applegadgetsbd.com/storage/media/thumb/4679-9527.jpg",
+        "price": 88000
+    },
+    {
+        "_id": 3,
+        "brand": "SAMSUNG",
+        "model": "Galaxy S23 Ultra 5G",
+        "thumb_img": "https://adminapi.applegadgetsbd.com/storage/media/thumb/Galaxy-S23-Ultra-Green-3380.jpg",
+        "price": 142000
+    },
+    {
+        "_id": 4,
+        "brand": "Apple",
+        "model": "MacBook Air M2 8/256GB 13.6-inch",
+        "thumb_img": "https://adminapi.applegadgetsbd.com/storage/media/thumb/MacBook-Air-M2-Space-Gray-5005.jpg",
+        "price": 142000
+    },
+    {
+        "_id": 5,
+        "brand": "iPhone",
+        "model": "iPhone 14 Pro Max",
+        "thumb_img": "https://i.ibb.co/zPGJYXf/i-Phone-14-Pro-Max-9907.jpg",
+        "price": 142000
+    },
+    {
+        "_id": 6,
+        "brand": "iPhone",
+        "model": "iPhone 14 Pro Max",
+        "thumb_img": "https://i.ibb.co/zPGJYXf/i-Phone-14-Pro-Max-9907.jpg",
+        "price": 142000
+    },
+    {
+        "_id": 7,
+        "brand": "iPhone",
+        "model": "iPhone 14 Pro Max",
+        "thumb_img": "https://i.ibb.co/zPGJYXf/i-Phone-14-Pro-Max-9907.jpg",
+        "price": 142000
+    },
+    {
+        "_id": 8,
+        "brand": "iPhone",
+        "model": "iPhone 14 Pro Max",
+        "thumb_img": "https://i.ibb.co/zPGJYXf/i-Phone-14-Pro-Max-9907.jpg",
+        "price": 142000
+    },
+    {
+        "_id": 9,
+        "brand": "iPhone",
+        "model": "iPhone 14 Pro Max",
+        "thumb_img": "https://i.ibb.co/zPGJYXf/i-Phone-14-Pro-Max-9907.jpg",
+        "price": 142000
+    },
+    {
+        "_id": 11,
+        "brand": "iPhone",
+        "model": "iPhone 14 Pro Max",
+        "thumb_img": "https://i.ibb.co/zPGJYXf/i-Phone-14-Pro-Max-9907.jpg",
+        "price": 142000
+    },
+    {
+        "_id": 12,
+        "brand": "iPhone",
+        "model": "iPhone 14 Pro Max",
+        "thumb_img": "https://i.ibb.co/zPGJYXf/i-Phone-14-Pro-Max-9907.jpg",
+        "price": 145000
+    },
+    {
+        "_id": 13,
+        "brand": "iPhone",
+        "model": "iPhone 14 Pro Max",
+        "thumb_img": "https://i.ibb.co/zPGJYXf/i-Phone-14-Pro-Max-9907.jpg",
+        "price": 102000
+    }
+]
