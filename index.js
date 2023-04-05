@@ -17,6 +17,7 @@ const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
 });
 
+
 function verifyJWT(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
@@ -34,9 +35,25 @@ function verifyJWT(req, res, next) {
 async function run() {
   try {
     const productsCollection = client.db("eshop").collection("products");
+    const adminCollection = client.db("eshop").collection("admin");
     const product = { name: "OnePlus 10 Pro", brand: "OnePlus" };
+    console.log('database connected')
     // const result = await productsCollection.insertOne(product);
     // console.log(result);
+
+    app.get('/admin', async (req, res) => {
+      const query = {};
+      const allAdmin = await adminCollection.find(query).toArray();
+      res.send(allAdmin);
+    })
+
+    app.get('/admin/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email };
+      const user = await adminCollection.findOne(query);
+      res.send({ isAdmin: user?.role === 'admin' });
+
+    })
 
     app.post("/jwt", (req, res) => {
       const user = req.body;
