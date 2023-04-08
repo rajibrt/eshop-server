@@ -3,7 +3,7 @@ const app = express();
 const products = require("./products.json");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const port = process.env.PORT || 4000;
 require("dotenv").config();
 app.use(express.json());
@@ -55,6 +55,32 @@ async function run() {
 
     })
 
+    app.post('/addproduct', async (req, res) => {
+      const product = req.body;
+      const result = await productsCollection.insertOne(product);
+      res.send(result);
+    })
+
+    app.get('/productdetails/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) }
+      const selectedMobile = await productsCollection.findOne(query);
+      res.send(selectedMobile);
+    });
+
+    app.get('/allproducts', async (req, res) => {
+      const query = {};
+      const allProducts = await productsCollection.find(query).toArray();
+      res.send(allProducts);
+    })
+    app.get('/allproducts/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) }
+      const allProducts = await productsCollection.find(query).toArray();
+      res.send(allProducts);
+    })
+
+
     app.post("/jwt", (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
@@ -82,6 +108,8 @@ app.get("/product/:id", (req, res) => {
   const product = products.find((product) => product._id === id) || {};
   res.send(product);
 });
+
+
 
 app.listen(port, () => {
   console.log(`Server is running at: ${port}`);
