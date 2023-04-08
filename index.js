@@ -34,8 +34,9 @@ function verifyJWT(req, res, next) {
 async function run() {
   try {
     const productsCollection = client.db("eshop").collection("products");
+    const categoriesCollection = client.db("eshop").collection("categories");
+    const brandCollection = client.db("eshop").collection("brand");
     const adminCollection = client.db("eshop").collection("admin");
-    const product = { name: "OnePlus 10 Pro", brand: "OnePlus" };
     console.log("database connected");
     // const result = await productsCollection.insertOne(product);
     // console.log(result);
@@ -61,6 +62,12 @@ async function run() {
       res.send({ isAdmin: user?.role === "admin" });
     });
 
+    app.post('/category', async (req, res) => {
+      const category = req.body;
+      const result = await categoriesCollection.insertOne(category);
+      res.send(result);
+    })
+
     app.post("/addproduct", async (req, res) => {
       const product = req.body;
       const result = await productsCollection.insertOne(product);
@@ -80,12 +87,12 @@ async function run() {
       const allProducts = await productsCollection.find(query).toArray();
       res.send(allProducts);
     });
-    app.get("/allproducts/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: id };
-      const allProducts = await productsCollection.find(query).toArray();
-      res.send(allProducts);
-    });
+    // app.get("/allproducts/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   const query = { _id: id };
+    //   const allProducts = await productsCollection.find(query).toArray();
+    //   res.send(allProducts);
+    // });
 
     app.get("/product/:id", (req, res) => {
       const id = req.params.id;
