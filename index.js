@@ -62,11 +62,17 @@ async function run() {
       res.send({ isAdmin: user?.role === "admin" });
     });
 
-    app.post('/category', async (req, res) => {
+    app.post("/category", async (req, res) => {
       const category = req.body;
       const result = await categoriesCollection.insertOne(category);
       res.send(result);
-    })
+    });
+
+    app.get("/category", async (req, res) => {
+      const query = {};
+      const allCategory = await categoriesCollection.find(query).toArray();
+      res.send(allCategory);
+    });
 
     app.post("/addproduct", async (req, res) => {
       const product = req.body;
