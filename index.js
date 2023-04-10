@@ -70,9 +70,23 @@ async function run() {
 
     app.put("/editcategory/:id", async (req, res) => {
       const id = req.params.id;
-      const filter = { _id: new ObjectId() };
-      const updatedCategory = req.body;
-      console.log(updatedCategory);
+      const filter = { _id: new ObjectId(id) };
+      const category = req.body;
+      const option = { upsert: true };
+      const updatedCategory = {
+        $set: {
+          name: category.name,
+          image: category.image,
+          description: category.description,
+          submissionTime: category.submissionTime,
+        },
+      };
+      const result = await categoriesCollection.updateOne(
+        filter,
+        updatedCategory,
+        option
+      );
+      res.send(result);
     });
 
     app.get("/category", async (req, res) => {
