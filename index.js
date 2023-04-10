@@ -68,10 +68,25 @@ async function run() {
       res.send(result);
     });
 
+    app.put("/editcategory/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId() };
+      const updatedCategory = req.body;
+      console.log(updatedCategory);
+    });
+
     app.get("/category", async (req, res) => {
       const query = {};
       const allCategory = await categoriesCollection.find(query).toArray();
       res.send(allCategory);
+    });
+
+    app.get("/category/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+      const query = { _id: new ObjectId(id) };
+      const category = await categoriesCollection.findOne(query);
+      res.send(category);
     });
 
     app.post("/addproduct", async (req, res) => {
