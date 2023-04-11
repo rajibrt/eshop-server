@@ -126,6 +126,10 @@ async function run() {
       const allProducts = await productsCollection.find(query).toArray();
       res.send(allProducts);
     });
+
+    app.get("/latestproducts", async (req, res) => {
+      const query = {}
+    })
     // app.get("/allproducts/:id", async (req, res) => {
     //   const id = req.params.id;
     //   const query = { _id: id };
