@@ -91,7 +91,11 @@ async function run() {
 
     app.get("/category", async (req, res) => {
       const query = {};
-      const allCategory = await categoriesCollection.find(query).toArray();
+      const sort = { length: 1, name: 1 };
+      const allCategory = await categoriesCollection
+        .find(query)
+        .sort(sort)
+        .toArray();
       res.send(allCategory);
     });
 
