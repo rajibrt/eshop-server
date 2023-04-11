@@ -107,6 +107,19 @@ async function run() {
       res.send(category);
     });
 
+
+    app.get("/latestProducts", async (req, res) => {
+      const query = {};
+      const sort = { length: 1, submissionTime: -1 };
+      const limit = 8;
+      const latestSixProducts = await productsCollection
+        .find(query)
+        .sort(sort)
+        .limit(limit)
+        .toArray();
+      res.send(latestSixProducts);
+    })
+
     app.post("/addproduct", async (req, res) => {
       const product = req.body;
       const result = await productsCollection.insertOne(product);
@@ -127,9 +140,6 @@ async function run() {
       res.send(allProducts);
     });
 
-    app.get("/latestproducts", async (req, res) => {
-      const query = {}
-    })
     // app.get("/allproducts/:id", async (req, res) => {
     //   const id = req.params.id;
     //   const query = { _id: id };
