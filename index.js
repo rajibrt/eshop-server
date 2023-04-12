@@ -107,6 +107,14 @@ async function run() {
       res.send(category);
     });
 
+    app.delete("/deletecategory/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log("Trying to delete", id);
+      const query = { _id: new ObjectId(id) };
+      const result = await categoriesCollection.deleteOne(query);
+      console.log(result);
+      res.send(result);
+    });
 
     app.get("/latestProducts", async (req, res) => {
       const query = {};
@@ -118,7 +126,7 @@ async function run() {
         .limit(limit)
         .toArray();
       res.send(latestSixProducts);
-    })
+    });
 
     app.post("/addproduct", async (req, res) => {
       const product = req.body;
