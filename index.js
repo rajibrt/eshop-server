@@ -67,6 +67,11 @@ async function run() {
       const result = await categoriesCollection.insertOne(category);
       res.send(result);
     });
+    app.post("/brand", async (req, res) => {
+      const brand = req.body;
+      const result = await brandCollection.insertOne(brand);
+      res.send(result);
+    });
 
     app.put("/editcategory/:id", async (req, res) => {
       const id = req.params.id;
@@ -88,11 +93,42 @@ async function run() {
       );
       res.send(result);
     });
+    app.put("/editbrand/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const brand = req.body;
+      const option = { upsert: true };
+      const updatedBrand = {
+        $set: {
+          name: brand.name,
+          image: brand.image,
+          description: brand.description,
+          submissionTime: brand.submissionTime,
+        },
+      };
+
+      const result = await brandCollection.updateOne(
+        filter,
+        updatedBrand,
+        option
+      );
+      res.send(result);
+    });
 
     app.get("/category", async (req, res) => {
       const query = {};
       const sort = { length: 1, name: 1 };
       const allCategory = await categoriesCollection
+        .find(query)
+        .sort(sort)
+        .toArray();
+      res.send(allCategory);
+    });
+
+    app.get("/brand", async (req, res) => {
+      const query = {};
+      const sort = { length: 1, name: 1 };
+      const allCategory = await brandCollection
         .find(query)
         .sort(sort)
         .toArray();
@@ -107,11 +143,28 @@ async function run() {
       res.send(category);
     });
 
+    app.get("/brand/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+      const query = { _id: new ObjectId(id) };
+      const brand = await brandCollection.findOne(query);
+      res.send(brand);
+    });
+
     app.delete("/deletecategory/:id", async (req, res) => {
       const id = req.params.id;
       console.log("Trying to delete", id);
       const query = { _id: new ObjectId(id) };
       const result = await categoriesCollection.deleteOne(query);
+      console.log(result);
+      res.send(result);
+    });
+
+    app.delete("/deletebrand/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log("Trying to delete", id);
+      const query = { _id: new ObjectId(id) };
+      const result = await brandCollection.deleteOne(query);
       console.log(result);
       res.send(result);
     });
