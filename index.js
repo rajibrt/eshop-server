@@ -196,6 +196,8 @@ async function run() {
     });
 
     app.get("/allproducts", async (req, res) => {
+      const page = req.query.page;
+      console.log(page);
       const query = {};
       const allProducts = await productsCollection.find(query).toArray();
       res.send(allProducts);
