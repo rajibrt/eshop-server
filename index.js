@@ -197,8 +197,10 @@ async function run() {
 
     app.get("/allproducts", async (req, res) => {
       const query = {};
-      const allProducts = await productsCollection.find(query).toArray();
-      res.send(allProducts);
+      const sort = { length: 1, submissionTime: -1 };
+      const allProducts = await productsCollection.find(query).limit(6).sort(sort).toArray();
+      const count = await productsCollection.estimatedDocumentCount();
+      res.send({ count, allProducts });
     });
 
     // app.get("/allproducts/:id", async (req, res) => {
