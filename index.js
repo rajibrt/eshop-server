@@ -199,12 +199,15 @@ async function run() {
       const page = parseInt(req.query.page);
       const size = parseInt(req.query.size);
       const skip = page * size;
-      console.log('Page No', page, 'Size', size);
       const query = {};
       const sort = { length: 1, submissionTime: -1 };
       const cursor = productsCollection.find(query);
       // const allProducts = await cursor.skip(page * size).limit(size).toArray();
-      const allProducts = await cursor.skip(skip).limit(size).sort(sort).toArray();
+      const allProducts = await cursor
+        .skip(skip)
+        .limit(size)
+        .sort(sort)
+        .toArray();
       const count = await productsCollection.estimatedDocumentCount();
       res.send({ count, allProducts });
     });
